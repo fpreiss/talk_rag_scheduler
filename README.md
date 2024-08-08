@@ -1,4 +1,4 @@
-# Readme
+# Mastering RAG: Techniques for Improved Retrieval and Generation
 
 Code that accompanies the talk "Mastering RAG: Techniques for Improved Retrieval and Generation" first
 held at
