@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "talk_rag_scheduler"
+authors = [{ name = "Fabian Preiss", email = "fpreiss@digon.io" }]
+
+keywords = ["ai", "rag"]
+
+license = { text = "Proprietary" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Development Status :: 1 - Planning ",
+]
+dynamic = ["version"]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+
+[tool.mypy]
+strict = true
+
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+plugins = "numpy.typing.mypy_plugin"
+
+
+[[tool.mypy.overrides]]
+module = ["haystack.*", "haystack_integrations.*", "nest_asyncio"]
+ignore_missing_imports = true
+
+[tool.ruff]
+lint.select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "B", # flake8-bugbear
+]
+
+lint.ignore = [
+    "E501", # line too long, handled by black
+    "I001", # unsorted import - too annoying
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["A", "B", "C", "D", "E", "F"]
+lint.unfixable = []
+
+src = ["src"]
+
+# Allow unused variables when underscore-prefixed.
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.12
+target-version = "py312"
+
+[tool.ruff.lint.isort]
+known-third-party = [
+    "numpy",
+    "celery",
+    "torch",
+    "transformers",
+    "diffusers",
+    "pillow",
+]
+lines-after-imports = 2
+
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
+[tool.pyright]
+include = ["src"]
+exclude = ["**/node_modules", "**/__pycache__"]
+# ignore = ["src/oldstuff"]
+# defineConstant = { DEBUG = true }
+verboseOutput = false
+reportMissingImports = true
+pythonVersion = "3.12"
+pythonPlatform = "Linux"

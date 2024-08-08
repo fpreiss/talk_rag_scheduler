@@ -1,0 +1,13 @@
+chromadb
+haystack-ai
+chroma-haystack
+ollama-haystack
+GitPython
+gitdb
+ipykernel
+ipython
+Jinja2
+numpy
+pip-tools
+matplotlib
+mypy
